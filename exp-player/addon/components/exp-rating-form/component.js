@@ -638,7 +638,34 @@ var translations = {
                 }
             },
             "17": {
-                "label": "measures.questions.17.label"
+                "items": {
+                    "1": {
+                        "label": "measures.questions.17.items.1.label"
+                    },
+                    "2": {
+                        "label": "measures.questions.17.items.2.label"
+                    },
+                    "3": {
+                        "label": "measures.questions.17.items.3.label"
+                    },
+                    "4": {
+                        "label": "measures.questions.17.items.4.label"
+                    },
+                    "5": {
+                        "label": "measures.questions.17.items.5.label"
+                    },
+                    "6": {
+                        "label": "measures.questions.17.items.6.label"
+                    }
+                },
+                "label": "measures.questions.17.label",
+                "options": {
+                    "agree": "measures.questions.17.options.agree",
+                    "agreeStrongly": "measures.questions.17.options.agreeStrongly",
+                    "disagree": "measures.questions.17.options.disagree",
+                    "disagreeStrongly": "measures.questions.17.options.disagreeStrongly",
+                    "neutral": "measures.questions.17.options.neutral"
+                }
             }
         }
     }
@@ -995,15 +1022,19 @@ var questions = [
     ],
     {labelTop: true}
   ),
-  {
-    question: translations.measures.questions['17'].label,
-    type: 'textarea',
-    items: {
-      input: {
-        value:null
-      }
-    }
-  }];
+  generateSchema(
+    translations.measures.questions['17'].label,
+    'radio',
+    translations.measures.questions['17'].items,
+    [
+      translations.measures.questions['17'].options.disagreeStrongly,
+      translations.measures.questions['17'].options.disagree,
+      translations.measures.questions['17'].options.neutral,
+      translations.measures.questions['17'].options.agree,
+      translations.measures.questions['17'].options.agreeStrongly
+    ],
+    {labelTop: true}
+  )];
 
 const Validations = buildValidations(generateValidators(questions));
 
