@@ -671,19 +671,7 @@ var translations = {
     }
 };
 
-const TEN_POINT_SCALE = [
-  'number0',
-  'number1',
-  'number2',
-  'number3',
-  'number4',
-  'number5',
-  'number6',
-  'number7',
-  'number8',
-  'number9',
-  'number10'
-];
+const TEN_POINT_SCALE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const SEVEN_POINT_SCALE = TEN_POINT_SCALE.slice(0, 8);
 const NINE_POINT_SCALE = TEN_POINT_SCALE.slice(0, 10);
 
