@@ -1027,5 +1027,11 @@ export default ExpFrameBaseComponent.extend(Validations, {
                 }
             }
         }
+    },
+    actions: {
+        complete() {
+            this.sendAction('sessionCompleted');
+            this.send('next');
+        }
     }
 });
