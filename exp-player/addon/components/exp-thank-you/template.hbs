@@ -4,7 +4,9 @@
 </div>
 <div class="row exp-controls">
     <div class="pull-right">
-    <button class="btn btn-default pull-right">{{t 'thankyou.exitButton'}}</button><br>
-    <button class="btn btn-primary pull-right" {{action 'next'}}>{{t 'thankyou.personalityFeedbackButton'}}</button>
+    <button class="btn btn-default pull-right" {{action 'next'}}>{{t 'thankyou.exitButton'}}</button><br>
+    {{#link-to 'participate.results' class="btn btn-primary pull-right"}}
+        {{t 'thankyou.personalityFeedbackButton'}}
+    {{/link-to}}
     </div>
 </div>
