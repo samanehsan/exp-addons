@@ -2,6 +2,7 @@ import Ember from 'ember';
 import ExpFrameBaseComponent from 'exp-player/components/exp-frame-base';
 import layout from './template';
 import {validator, buildValidations} from 'ember-cp-validations';
+import config from 'ember-get-config';
 
 
 function range(start, stop) {
@@ -107,7 +108,6 @@ export default ExpFrameBaseComponent.extend(Validations, {
     type: 'exp-overview',
     layout: layout,
     questions: questions,
-
     showOptional: Ember.computed('questions.7.value', function() {
        return this.questions[7].value === 'yesLabel';
     }),
@@ -119,6 +119,12 @@ export default ExpFrameBaseComponent.extend(Validations, {
         }
         return responses;
     }).volatile(),
+    allowNext: Ember.computed('validations.isValid', function() {
+        if (config.validate) {
+            return this.get('validations.isValid');
+        }
+        return true;
+    }),
     meta: {
         name: 'ExpOverview',
             description: 'TODO: a description of this frame goes here.',
@@ -173,9 +179,9 @@ export default ExpFrameBaseComponent.extend(Validations, {
     },
     actions: {
       continue() {
-        if (this.get('validations.isValid')) {
-          this.send('next');
-        }
+          if (this.get('validations.isValid') || !config.validate) {
+              this.send('next');
+          }
       }
     },
     loadData: function(frameData) {

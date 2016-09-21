@@ -2,6 +2,8 @@ import Ember from 'ember';
 import ExpFrameBaseComponent from 'exp-player/components/exp-frame-base';
 import layout from './template';
 import {validator, buildValidations} from 'ember-cp-validations';
+import config from 'ember-get-config';
+
 
 var items = {
     '3': [
@@ -595,6 +597,9 @@ export default ExpFrameBaseComponent.extend(Validations, {
         }
         return responses;
     }).volatile(),
+    allowNext: Ember.computed('validations.isValid', function() {
+       return this.get('validations.isValid') || !config.validate;
+    }),
     meta: {
         name: 'ExpRatingForm',
         description: 'TODO: a description of this frame goes here.',
@@ -616,11 +621,16 @@ export default ExpFrameBaseComponent.extend(Validations, {
     },
     actions: {
         nextPage() {
-            if (this.get('validations.isValid')) {
-                this.send('save');
-                var page = this.get('framePage') + 1;
-                this.set('framePage', page);
-                this.sendAction('updateFramePage', page);
+            if (this.get('validations.isValid') || !config.validate) {
+                if (this.get('framePage') !== this.get('lastPage')) {
+                    this.send('save');
+                    var page = this.get('framePage') + 1;
+                    this.set('framePage', page);
+                    this.sendAction('updateFramePage', page);
+                } else {
+                    this.sendAction('sessionCompleted');
+                    this.send('next');
+                }
                 window.scrollTo(0, 0);
             }
         },
@@ -629,12 +639,6 @@ export default ExpFrameBaseComponent.extend(Validations, {
             this.set('framePage', page);
             this.sendAction('updateFramePage', page);
             window.scrollTo(0,0);
-        },
-        continue() {
-            if (this.get('validations.isValid')) {
-                this.sendAction('sessionCompleted');
-                this.send('next');
-            }
         }
     },
     loadData: function(frameData) {
