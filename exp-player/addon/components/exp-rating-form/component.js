@@ -381,11 +381,11 @@ var questions = [
                 labels: [
                     {
                         rating: 0,
-                        label: 'measures.questions.6.items.4.options.notAtAll'
+                        label: 'measures.questions.6.items.3.options.notAtAll'
                     },
                     {
                         rating: 7,
-                        label: 'measures.questions.6.items.4.options.aGreatDeal'
+                        label: 'measures.questions.6.items.3.options.aGreatDeal'
                     }]
             },
             {
