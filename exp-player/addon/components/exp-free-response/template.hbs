@@ -16,6 +16,19 @@
       {{#textarea maxlength=75 rows="5" cols="40" class="form-control" value=q3}}{{/textarea}}
       <p class="text-muted">{{diff3}}</p>
     {{/bs-form-group}}
+    {{#bs-form-group}}
+      <label>{{t 'survey.sections.2.questions.14.label'}}</label>
+      {{#power-select
+        selected=value
+        options=times
+        placeholder=placeholder
+        renderInPlace=true
+        onchange=(action (mut value))
+          as |option|
+        }}
+        {{option}}
+      {{/power-select}}
+    {{/bs-form-group}}
   {{/bs-form}}
 </div>
 <div class="row exp-controls">

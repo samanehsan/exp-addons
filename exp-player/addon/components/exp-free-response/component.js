@@ -46,6 +46,25 @@ export default ExpFrameBaseComponent.extend(Validations, {
         message = message.replace("0", length.toString());
         return message;
     }),
+    placeholder: Ember.computed(function() {
+        return this.get('i18n').t('global.selectUnselected').string;
+    }),
+    times: [
+            '12:00PM 12:00',
+            '1:00PM 13:00',
+            '2:00PM 14:00',
+            '3:00PM 15:00',
+            '4:00PM 16:00',
+            '5:00PM 17:00',
+            '6:00PM 18:00',
+            '7:00PM 19:00',
+            '8:00PM 20:00',
+            '9:00PM 21:00',
+            '10:00PM 22:00',
+            '11:00PM 23:00',
+            '12:00AM 00:00'],
+
+    value: null,
 
     responses: Ember.computed('q1', 'q2', 'q3', function() {
         return {
